@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/list_item"
+        android:enabled="true"
+        android:icon="@drawable/list_bottom_nav"
+        android:title="@string/bottom_navigation_list" />
+    <item
+        android:id="@+id/scaling_item"
+        android:enabled="true"
+        android:icon="@drawable/scaling_bottom_nav"
+        android:title="@string/bottom_navigation_scaling" />
+    <item
+        android:id="@+id/parsing_item"
+        android:enabled="true"
+        android:icon="@drawable/parsing_bottom_nav"
+        android:title="@string/bottom_navigation_parsing" />
+    <item
+        android:id="@+id/map_item"
+        android:enabled="true"
+        android:icon="@drawable/map_bottom_nav"
+        android:title="@string/bottom_navigation_map" />
+</menu>

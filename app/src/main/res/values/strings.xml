@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">LSPM</string>
+    <string name="bottom_navigation_list">List</string>
+    <string name="bottom_navigation_scaling">Scaling</string>
+    <string name="bottom_navigation_parsing">Parsing</string>
+    <string name="bottom_navigation_map">Map</string>
+
+    <!-- Temp Resources -->
+    <string name="temp_list">List Fragment</string>
+    <string name="temp_scaling">Scaling Fragment</string>
+    <string name="temp_parsing">Parsing Fragment</string>
+    <string name="temp_map">Map Fragment</string>
 </resources>
