@@ -3,10 +3,10 @@ package com.cespaul.lspm.ui
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.cespaul.lspm.ui.pages.ListFragment
-import com.cespaul.lspm.ui.pages.MapFragment
-import com.cespaul.lspm.ui.pages.ParsingFragment
-import com.cespaul.lspm.ui.pages.ScalingFragment
+import com.cespaul.lspm.ui.pages.list.ListFragment
+import com.cespaul.lspm.ui.pages.map.MapFragment
+import com.cespaul.lspm.ui.pages.parsing.ParsingFragment
+import com.cespaul.lspm.ui.pages.scailng.ScalingFragment
 
 class CollectionStateAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {

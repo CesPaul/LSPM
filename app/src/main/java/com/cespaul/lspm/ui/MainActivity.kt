@@ -1,24 +1,34 @@
 package com.cespaul.lspm.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.cespaul.lspm.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val collectionViewPager: ViewPager2 = mainPager
+        viewPagerInit(mainPager)
+        bottomNavigationInit(mainBottomNavigation, mainPager)
+
+    }
+
+    private fun viewPagerInit(collectionViewPager: ViewPager2) {
         collectionViewPager.isUserInputEnabled = false
         collectionViewPager.adapter = CollectionStateAdapter(this)
+    }
 
-        val bottomNavigationView = mainBottomNavigation
+    private fun bottomNavigationInit(
+        bottomNavigationView: BottomNavigationView,
+        collectionViewPager: ViewPager2
+    ) {
         bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -37,5 +47,9 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    override fun getContext(): Context {
+        return this
     }
 }
