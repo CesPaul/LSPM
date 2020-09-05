@@ -6,10 +6,10 @@ package com.cespaul.lspm.base.activity
  * @param V Конкретная реализация базовой View.
  * @property view Конкретная реализация базовой View.
  */
-abstract class BasePresenter<out V : BaseView>(protected val view: BaseView) {
-
+abstract class BasePresenter<out V : BaseView>(private val view: BaseView) {
 
     open fun onViewCreated() {}
 
     open fun onViewDestroyed() {}
+
 }

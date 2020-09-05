@@ -2,14 +2,18 @@ package com.cespaul.lspm.ui
 
 import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.cespaul.lspm.R
+import com.cespaul.lspm.base.activity.BaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class MainActivity : AppCompatActivity(), MainView {
+/**
+ * Главное окно приложения.
+ *
+ */
+class MainActivity : BaseActivity<MainPresenter>(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,11 +24,22 @@ class MainActivity : AppCompatActivity(), MainView {
 
     }
 
+    /**
+     * Инициализация ViewPager2.
+     *
+     * @param collectionViewPager
+     */
     private fun viewPagerInit(collectionViewPager: ViewPager2) {
         collectionViewPager.isUserInputEnabled = false
         collectionViewPager.adapter = CollectionStateAdapter(this)
     }
 
+    /**
+     * Инициализация BottomNavigationView.
+     *
+     * @param bottomNavigationView
+     * @param collectionViewPager
+     */
     private fun bottomNavigationInit(
         bottomNavigationView: BottomNavigationView,
         collectionViewPager: ViewPager2
@@ -51,5 +66,9 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun getContext(): Context {
         return this
+    }
+
+    override fun instantiatePresenter(): MainPresenter {
+        return MainPresenter(this)
     }
 }

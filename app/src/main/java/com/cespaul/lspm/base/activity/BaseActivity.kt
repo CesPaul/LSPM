@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
  */
 abstract class BaseActivity<P : BasePresenter<BaseView>> : BaseView, AppCompatActivity() {
 
-    protected lateinit var presenter: P
+    private lateinit var presenter: P
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

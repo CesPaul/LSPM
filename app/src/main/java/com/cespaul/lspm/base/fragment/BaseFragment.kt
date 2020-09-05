@@ -5,14 +5,14 @@ import android.view.View
 import androidx.fragment.app.Fragment
 
 /**
- * Обеспечивает основу для конкретных презентеров.
+ * Обеспечивает основу для активити.
  *
- * @param V Конкретная реализация базовой View фрагмента.
- * @property view Конкретная реализация базовой View фрагмента.
+ * @param P Для передачи базового презентера.
  */
-abstract class BaseFragment<P : BaseFragmentPresenter<BaseFragmentView>> : BaseFragmentView,
+abstract class BaseFragment<P : BaseFragmentPresenter<BaseFragmentView>> :
+    BaseFragmentView,
     Fragment() {
-    protected lateinit var presenter: P
+    private lateinit var presenter: P
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -21,7 +21,6 @@ abstract class BaseFragment<P : BaseFragmentPresenter<BaseFragmentView>> : BaseF
 
     /**
      * Создание презентера.
-     * Вызывается в методе onCreate.
      *
      * @return Экземпляр конкретной реализации базового презентера.
      */
