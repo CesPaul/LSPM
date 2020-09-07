@@ -1,3 +1,7 @@
 package com.cespaul.lspm.base.fragment
 
-interface BaseFragmentView
+import android.content.Context
+
+interface BaseFragmentView {
+    fun getFragmentContext(): Context
+}

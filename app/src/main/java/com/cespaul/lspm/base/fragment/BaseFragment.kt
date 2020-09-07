@@ -1,5 +1,6 @@
 package com.cespaul.lspm.base.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -12,7 +13,7 @@ import androidx.fragment.app.Fragment
 abstract class BaseFragment<P : BaseFragmentPresenter<BaseFragmentView>> :
     BaseFragmentView,
     Fragment() {
-    private lateinit var presenter: P
+    protected lateinit var presenter: P
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,4 +26,7 @@ abstract class BaseFragment<P : BaseFragmentPresenter<BaseFragmentView>> :
      * @return Экземпляр конкретной реализации базового презентера.
      */
     protected abstract fun instantiatePresenter(): P
+    override fun getFragmentContext(): Context {
+        return requireContext()
+    }
 }
