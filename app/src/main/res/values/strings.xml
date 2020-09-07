@@ -1,13 +1,31 @@
 <resources>
     <string name="app_name">LSPM</string>
+
+    <!-- Dialogs -->
+    <string name="add_title">Создание элемента</string>
+    <string name="add_item_name">Название элемента</string>
+    <string name="done_add_item">Создать</string>
+    <string name="revert_add_item">Отменить</string>
+
+    <string name="delete_title">Удаление элемента</string>
+    <string name="done_delete_item">Удалить</string>
+    <string name="revert_delete_item">Отменить</string>
+
+    <string name="edit_title">Редактирование элемента</string>
+    <string name="edit_item_name">Новое название элемента</string>
+    <string name="done_edit_item">Изменить</string>
+    <string name="revert_edit_item">Отменить</string>
+
+    <!-- Menu -->
     <string name="bottom_navigation_list">List</string>
     <string name="bottom_navigation_scaling">Scaling</string>
     <string name="bottom_navigation_parsing">Parsing</string>
     <string name="bottom_navigation_map">Map</string>
 
-    <!-- Temp Resources -->
-    <string name="temp_list">List Fragment</string>
-    <string name="temp_scaling">Scaling Fragment</string>
-    <string name="temp_parsing">Parsing Fragment</string>
-    <string name="temp_map">Map Fragment</string>
+    <!-- Context Menu Long Click -->
+    <string name="long_menu_edit">Редактировать</string>
+    <string name="long_menu_delete">Удалить</string>
+
+    <!-- Toast Messages -->
+    <string name="empty_field">Поля не должны быть пустыми!</string>
 </resources>
