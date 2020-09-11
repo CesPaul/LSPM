@@ -3,17 +3,24 @@ package com.cespaul.lspm.ui.pages.list
 import androidx.appcompat.widget.PopupMenu
 import com.cespaul.lspm.R
 import com.cespaul.lspm.base.fragment.BaseFragmentPresenter
-import com.cespaul.lspm.model.ListItem
-import com.cespaul.lspm.model.repository.ListRepositoryImpl
+import com.cespaul.lspm.data.repository.ListRepository
+import com.cespaul.lspm.data.repository.ListRepositoryImpl
+import com.cespaul.lspm.model.Item
 
 
-class ListPresenter(listView: ListView) : BaseFragmentPresenter<ListView>(listView) {
-    private val listRepository = ListRepositoryImpl()
+class ListPresenter(
+    listView: ListView
+    //listRepository: ListRepository
+) : BaseFragmentPresenter<ListView>(listView) {
+
+    //private var repository: ListRepository = listRepository
+
+    private val repository: ListRepository = ListRepositoryImpl(listView.getFragmentContext())
+
     var listAdapter = ListRvAdapter(
-        listRepository,
+        repository,
         { _, item ->
-            viewFragment.showToast("Edit")
-            //onEditService(item)
+            onEditItem(item)
         },
         { _, item, it ->
             val popupMenu = PopupMenu(viewFragment.getFragmentContext(), it)
@@ -23,8 +30,7 @@ class ListPresenter(listView: ListView) : BaseFragmentPresenter<ListView>(listVi
             popupMenu.setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.item_edit -> {
-                        //onEditService(item)
-                        viewFragment.showToast("Edit")
+                        onEditItem(item)
                         return@setOnMenuItemClickListener true
                     }
                     R.id.item_delete -> {
@@ -40,27 +46,27 @@ class ListPresenter(listView: ListView) : BaseFragmentPresenter<ListView>(listVi
 
     fun onAddItem() {
         viewFragment.showAddDialog {
-            listRepository.addItem(it)
+            repository.addItem(it)
             listAdapter.notifyDataSetChanged()
         }
     }
 
-    private fun onDeleteItem(itemList: ListItem) {
+    private fun onDeleteItem(item: Item) {
         viewFragment.showDeleteDialog {
-            listRepository.deleteItem(itemList)
+            repository.deleteItem(item)
             listAdapter.notifyDataSetChanged()
         }
     }
 
-    private fun onEditService(listItem: ListItem) {
-        viewFragment.showEditDialog(listItem) {
-            if (listItem.nameItem.isEmpty()) {
+    private fun onEditItem(item: Item) {
+        viewFragment.showEditDialog(item) {
+            if (item.nameItem.isEmpty()) {
                 viewFragment.showToast(
                     viewFragment.getFragmentContext().getString(R.string.empty_field)
                 )
             } else {
-                listItem.nameItem = it.nameItem
-                listRepository.editItem(listItem)
+                item.nameItem = it.nameItem
+                repository.editItem(item)
                 listAdapter.notifyDataSetChanged()
             }
         }

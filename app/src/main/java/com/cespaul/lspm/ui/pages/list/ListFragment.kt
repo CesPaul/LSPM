@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cespaul.lspm.R
 import com.cespaul.lspm.base.fragment.BaseFragment
-import com.cespaul.lspm.model.ListItem
+import com.cespaul.lspm.model.Item
 import kotlinx.android.synthetic.main.dialog_add_list_item.view.*
 import kotlinx.android.synthetic.main.dialog_delete_list_item.view.*
 import kotlinx.android.synthetic.main.dialog_edit_list_item.*
@@ -20,6 +20,9 @@ import kotlinx.android.synthetic.main.fragment_list.*
 
 
 class ListFragment : BaseFragment<ListPresenter>(), ListView {
+
+    /*@Inject
+    lateinit var listPresenter: ListPresenter*/
 
     private lateinit var toast: Toast
 
@@ -34,6 +37,7 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        //DaggerListScreenComponent.factory().create(App.appComponent).inject(this)
         val listRecycler = list_recycler
         listRecycler.layoutManager = layoutManager
         listRecycler.adapter = presenter.listAdapter
@@ -54,7 +58,7 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
         return ListPresenter(this)
     }
 
-    override fun showAddDialog(onConfirmListener: (ListItem) -> Unit) {
+    override fun showAddDialog(onConfirmListener: (Item) -> Unit) {
         val addDialogView =
             LayoutInflater.from(context).inflate(R.layout.dialog_add_list_item, null)
         val addDialogBuilder = AlertDialog.Builder(context)
@@ -72,7 +76,7 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
                 return@setOnClickListener
             }
             val name = addDialogView.add_name_item.text.toString()
-            val serviceRent = ListItem(0, name)
+            val serviceRent = Item(0, name)
             addAlertDialog.dismiss()
             onConfirmListener.invoke(serviceRent)
         }
@@ -98,8 +102,8 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
     }
 
     override fun showEditDialog(
-        listItem: ListItem,
-        onConfirmListener: (ListItem) -> Unit
+        item: Item,
+        onConfirmListener: (Item) -> Unit
     ) {
         val editDialogView =
             LayoutInflater.from(context).inflate(R.layout.dialog_edit_list_item, null)
@@ -111,7 +115,7 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
         val editAlertDialog = editDialogBuilder.show()
 
         editAlertDialog.edit_name_item.setText(
-            listItem.nameItem,
+            item.nameItem,
             TextView.BufferType.EDITABLE
         )
 
@@ -124,7 +128,7 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
                 return@setOnClickListener
             }
             val nameItem = editDialogView.edit_name_item.text.toString()
-            val tempListItem = ListItem(-1, nameItem)
+            val tempListItem = Item(-1, nameItem)
             onConfirmListener.invoke(tempListItem)
             editAlertDialog.dismiss()
         }

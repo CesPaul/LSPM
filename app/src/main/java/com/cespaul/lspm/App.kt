@@ -12,14 +12,17 @@ class App : Application() {
         lateinit var appComponent: AppComponent private set
         val appContext: Context
             get() = instance.applicationContext
+
+        /*var database: AppDatabase = Room.databaseBuilder(
+        appContext,
+        AppDatabase::class.java, "main_repository"
+        ).build()*/
     }
 
     override fun onCreate() {
         super.onCreate()
         instance = this
-        appComponent = DaggerAppComponent.factory().create(
-            AppModule(this)
-        )
+        appComponent = DaggerAppComponent.factory().create(AppModule(this))
         appComponent.inject(this)
     }
 }

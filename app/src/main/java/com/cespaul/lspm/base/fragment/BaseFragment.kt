@@ -26,6 +26,7 @@ abstract class BaseFragment<P : BaseFragmentPresenter<BaseFragmentView>> :
      * @return Экземпляр конкретной реализации базового презентера.
      */
     protected abstract fun instantiatePresenter(): P
+
     override fun getFragmentContext(): Context {
         return requireContext()
     }

@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cespaul.lspm.R
-import com.cespaul.lspm.model.ListItem
-import com.cespaul.lspm.model.repository.ListRepository
+import com.cespaul.lspm.data.repository.ListRepository
+import com.cespaul.lspm.model.Item
 import kotlinx.android.synthetic.main.item_list_row.view.*
 
 class ListRvAdapter(
     private val listRepository: ListRepository,
-    private val onItemClickListener: (position: Int, item: ListItem) -> Unit,
-    private val onLongClickListener: (position: Int, item: ListItem, view: View) -> Boolean
+    private val onItemClickListener: (position: Int, item: Item) -> Unit,
+    private val onLongClickListener: (position: Int, item: Item, view: View) -> Boolean
 ) : RecyclerView.Adapter<ListRvAdapter.ListVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListVH {
