@@ -21,6 +21,6 @@
         android:layout_height="@dimen/half_base_grid_size"
         android:layout_gravity="bottom"
         android:scaleType="fitXY"
-        app:srcCompat="@mipmap/shadow_bottom_4dp"
+        app:srcCompat="@drawable/shadow_bottom_4dp"
         tools:ignore="ContentDescription" />
 </LinearLayout>
