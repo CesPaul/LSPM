@@ -11,6 +11,8 @@ interface ListRepository {
 
     fun deleteItem(item: Item)
 
+    fun changeCheckItem(item: Item)
+
     fun getList(): ArrayList<Item>
 
     fun getItemCount(): Int

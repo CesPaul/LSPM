@@ -31,11 +31,15 @@ class ListRepositoryImpl(context: Context/*, listDao: ListDao*/) : ListRepositor
     override fun deleteItem(item: Item) {
         database.listDao().deleteItem(item.id)
         for (listItem in list) {
-            if (listItem.id == listItem.id) {
+            if (listItem.id == item.id) {
                 list.remove(listItem)
                 return
             }
         }
+    }
+
+    override fun changeCheckItem(item: Item) {
+        database.listDao().editItem(item)
     }
 
     override fun editItem(item: Item) {

@@ -1,10 +1,9 @@
 package com.cespaul.lspm.ui.pages.list
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -26,8 +25,6 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
 
     private lateinit var toast: Toast
 
-    private val layoutManager = LinearLayoutManager(context)
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,6 +35,7 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //DaggerListScreenComponent.factory().create(App.appComponent).inject(this)
+        val layoutManager = LinearLayoutManager(context)
         val listRecycler = list_recycler
         listRecycler.layoutManager = layoutManager
         listRecycler.adapter = presenter.listAdapter
@@ -45,8 +43,8 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
             listRecycler.context,
             layoutManager.orientation
         )
-        toast = Toast.makeText(context, "", Toast.LENGTH_LONG)
         listRecycler.addItemDecoration(dividerItemDecoration)
+        toast = Toast.makeText(context, "", Toast.LENGTH_LONG)
 
         add_item_fab.show()
         add_item_fab.setOnClickListener {
@@ -67,6 +65,18 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
             .setCancelable(false)
         val addAlertDialog = addDialogBuilder.show()
 
+        // Задать фокус и показать клавиатуру при открытии диалога.
+        addAlertDialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        addDialogView.add_name_item.requestFocus()
+
+        // Задать закрытие диалога при нажатии "Назад"
+        addAlertDialog.setOnKeyListener(DialogInterface.OnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                addAlertDialog.dismiss()
+            }
+            return@OnKeyListener true
+        })
+
         addDialogView.cancelAddButton.setOnClickListener {
             addAlertDialog.dismiss()
         }
@@ -76,21 +86,29 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
                 return@setOnClickListener
             }
             val name = addDialogView.add_name_item.text.toString()
-            val serviceRent = Item(0, name)
+            val item = Item(0, name, false)
             addAlertDialog.dismiss()
-            onConfirmListener.invoke(serviceRent)
+            onConfirmListener.invoke(item)
         }
     }
 
     override fun showDeleteDialog(onConfirmListener: () -> Unit) {
         val deleteDialogView =
-            LayoutInflater.from(context).inflate(R.layout.dialog_delete_list_item, null)
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_delete_list_item, null)
 
-        val deleteDialogBuilder = AlertDialog.Builder(context)
+        val deleteDialogBuilder = AlertDialog.Builder(requireContext())
             .setView(deleteDialogView)
             .setTitle(R.string.delete_title)
             .setCancelable(false)
         val deleteAlertDialog = deleteDialogBuilder.show()
+
+        // Задать закрытие диалога при нажатии "Назад"
+        deleteAlertDialog.setOnKeyListener(DialogInterface.OnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                deleteAlertDialog.dismiss()
+            }
+            return@OnKeyListener true
+        })
 
         deleteDialogView.cancelDeleteButton.setOnClickListener {
             deleteAlertDialog.dismiss()
@@ -106,13 +124,25 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
         onConfirmListener: (Item) -> Unit
     ) {
         val editDialogView =
-            LayoutInflater.from(context).inflate(R.layout.dialog_edit_list_item, null)
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_list_item, null)
 
-        val editDialogBuilder = AlertDialog.Builder(context)
+        val editDialogBuilder = AlertDialog.Builder(requireContext())
             .setView(editDialogView)
             .setTitle(R.string.edit_title)
             .setCancelable(false)
         val editAlertDialog = editDialogBuilder.show()
+
+        // Задать фокус и показать клавиатуру при открытии диалога.
+        editAlertDialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        editDialogView.edit_name_item.requestFocus()
+
+        // Задать закрытие диалога при нажатии "Назад"
+        editAlertDialog.setOnKeyListener(DialogInterface.OnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                editAlertDialog.dismiss()
+            }
+            return@OnKeyListener true
+        })
 
         editAlertDialog.edit_name_item.setText(
             item.nameItem,
@@ -128,8 +158,8 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
                 return@setOnClickListener
             }
             val nameItem = editDialogView.edit_name_item.text.toString()
-            val tempListItem = Item(-1, nameItem)
-            onConfirmListener.invoke(tempListItem)
+            val editedItem = Item(-1, nameItem, item.isChecked)
+            onConfirmListener.invoke(editedItem)
             editAlertDialog.dismiss()
         }
     }

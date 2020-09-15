@@ -18,14 +18,17 @@ class ListPresenter(
     private val repository: ListRepository = ListRepositoryImpl(listView.getFragmentContext())
 
     var listAdapter = ListRvAdapter(
+        viewFragment.getFragmentContext(),
         repository,
         { _, item ->
             onEditItem(item)
         },
+        { _, item ->
+            onChangeCheckBox(item)
+        },
         { _, item, it ->
             val popupMenu = PopupMenu(viewFragment.getFragmentContext(), it)
             popupMenu.menuInflater.inflate(R.menu.list_item_long_click_menu, popupMenu.menu)
-            popupMenu.gravity = 5
             popupMenu.show()
             popupMenu.setOnMenuItemClickListener {
                 when (it.itemId) {
@@ -70,5 +73,11 @@ class ListPresenter(
                 listAdapter.notifyDataSetChanged()
             }
         }
+    }
+
+    private fun onChangeCheckBox(item: Item) {
+        item.isChecked = item.isChecked.not()
+        repository.changeCheckItem(item)
+        listAdapter.notifyDataSetChanged()
     }
 }

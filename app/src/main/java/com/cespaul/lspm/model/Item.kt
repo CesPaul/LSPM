@@ -9,5 +9,7 @@ data class Item(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     @ColumnInfo(name = "nameItem")
-    var nameItem: String
+    var nameItem: String,
+    @ColumnInfo(name = "statusCheckItem")
+    var isChecked: Boolean
 )
