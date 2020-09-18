@@ -3,19 +3,21 @@ package com.cespaul.lspm.ui.pages.list
 import androidx.appcompat.widget.PopupMenu
 import com.cespaul.lspm.R
 import com.cespaul.lspm.base.fragment.BaseFragmentPresenter
+import com.cespaul.lspm.data.database.ListDao
 import com.cespaul.lspm.data.repository.ListRepository
 import com.cespaul.lspm.data.repository.ListRepositoryImpl
 import com.cespaul.lspm.model.Item
+import javax.inject.Inject
 
 
 class ListPresenter(
     listView: ListView
-    //listRepository: ListRepository
 ) : BaseFragmentPresenter<ListView>(listView) {
 
-    //private var repository: ListRepository = listRepository
+    @Inject
+    lateinit var listDao: ListDao
 
-    private val repository: ListRepository = ListRepositoryImpl(listView.getFragmentContext())
+    private val repository: ListRepository = ListRepositoryImpl(listDao)
 
     var listAdapter = ListRvAdapter(
         viewFragment.getFragmentContext(),

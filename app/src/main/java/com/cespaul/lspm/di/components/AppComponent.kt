@@ -1,28 +1,32 @@
 package com.cespaul.lspm.di.components
 
-import android.content.Context
 import com.cespaul.lspm.App
 import com.cespaul.lspm.di.modules.AppModule
-import com.cespaul.lspm.di.modules.RepositoryModule
+import com.cespaul.lspm.di.modules.RoomModule
 import dagger.Component
-import javax.inject.Singleton
+import javax.inject.Scope
 
-@Singleton
+@Scope
+@Retention
+annotation class AppScope
+
+@AppScope
 @Component(
     modules = [
         AppModule::class,
-        RepositoryModule::class
+        RoomModule::class
     ]
 )
 interface AppComponent {
 
     fun inject(app: App)
 
-    fun appContext(): Context
-    //fun listRepository(): ListRepository
+    @Component.Builder
+    interface Builder {
+        fun build(): AppComponent
 
-    @Component.Factory
-    interface Factory {
-        fun create(appModule: AppModule): AppComponent
+        fun appModule(appModule: AppModule): Builder
+
+        fun roomModule(roomModule: RoomModule): Builder
     }
 }

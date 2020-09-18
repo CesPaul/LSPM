@@ -20,9 +20,6 @@ import kotlinx.android.synthetic.main.fragment_list.*
 
 class ListFragment : BaseFragment<ListPresenter>(), ListView {
 
-    /*@Inject
-    lateinit var listPresenter: ListPresenter*/
-
     private lateinit var toast: Toast
 
     override fun onCreateView(
@@ -34,7 +31,6 @@ class ListFragment : BaseFragment<ListPresenter>(), ListView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //DaggerListScreenComponent.factory().create(App.appComponent).inject(this)
         val layoutManager = LinearLayoutManager(context)
         val listRecycler = list_recycler
         listRecycler.layoutManager = layoutManager
