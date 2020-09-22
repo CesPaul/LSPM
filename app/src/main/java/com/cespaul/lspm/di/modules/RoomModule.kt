@@ -2,21 +2,16 @@ package com.cespaul.lspm.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.cespaul.lspm.App
 import com.cespaul.lspm.data.database.AppDatabase
 import com.cespaul.lspm.data.database.ListDao
-import com.cespaul.lspm.di.components.AppScope
+import com.cespaul.lspm.di.components.ScreensScope
 import dagger.Module
 import dagger.Provides
 
 @Module
 class RoomModule {
 
-    @AppScope
-    @Provides
-    fun provideContext(): Context = App.appContext
-
-    @AppScope
+    @ScreensScope
     @Provides
     fun provideDatabase(context: Context): AppDatabase = Room.databaseBuilder(
         context,
@@ -25,7 +20,7 @@ class RoomModule {
         .allowMainThreadQueries()
         .build()
 
-    @AppScope
+    @ScreensScope
     @Provides
     fun provideListDao(appDatabase: AppDatabase): ListDao = appDatabase.listDao()
 }

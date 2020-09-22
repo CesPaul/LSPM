@@ -1,8 +1,8 @@
 package com.cespaul.lspm.di.components
 
+import android.content.Context
 import com.cespaul.lspm.App
 import com.cespaul.lspm.di.modules.AppModule
-import com.cespaul.lspm.di.modules.RoomModule
 import dagger.Component
 import javax.inject.Scope
 
@@ -13,20 +13,17 @@ annotation class AppScope
 @AppScope
 @Component(
     modules = [
-        AppModule::class,
-        RoomModule::class
+        AppModule::class
     ]
 )
 interface AppComponent {
 
     fun inject(app: App)
 
-    @Component.Builder
-    interface Builder {
-        fun build(): AppComponent
+    fun appContext(): Context
 
-        fun appModule(appModule: AppModule): Builder
-
-        fun roomModule(roomModule: RoomModule): Builder
+    @Component.Factory
+    interface Factory {
+        fun create(appModule: AppModule): AppComponent
     }
 }

@@ -5,7 +5,6 @@ import android.content.Context
 import com.cespaul.lspm.di.components.AppComponent
 import com.cespaul.lspm.di.components.DaggerAppComponent
 import com.cespaul.lspm.di.modules.AppModule
-import com.cespaul.lspm.di.modules.RoomModule
 
 class App : Application() {
     companion object {
@@ -20,10 +19,8 @@ class App : Application() {
         super.onCreate()
         instance = this
         appComponent = DaggerAppComponent
-            .builder()
-            .appModule(AppModule(this))
-            .roomModule(RoomModule())
-            .build()
+            .factory()
+            .create(AppModule(this))
         appComponent.inject(this)
     }
 }

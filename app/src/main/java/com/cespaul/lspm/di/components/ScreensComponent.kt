@@ -1,25 +1,27 @@
 package com.cespaul.lspm.di.components
 
-import com.cespaul.lspm.base.fragment.BaseFragmentView
 import com.cespaul.lspm.di.modules.RoomModule
 import com.cespaul.lspm.ui.pages.list.ListPresenter
-import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Scope
 
-@AppScope
+@Scope
+@Retention
+annotation class ScreensScope
+
+@ScreensScope
 @Component(
-    modules = [RoomModule::class]
+    dependencies = [AppComponent::class],
+    modules = [
+        RoomModule::class
+    ]
 )
 interface ScreensComponent {
+
     fun inject(listPresenter: ListPresenter)
 
-    @Component.Builder
-    interface Builder {
-        fun build(): ScreensComponent
-
-        fun roomModule(roomModule: RoomModule): Builder
-
-        @BindsInstance
-        fun baseFragmentView(baseFragmentView: BaseFragmentView): Builder
+    @Component.Factory
+    interface Factory {
+        fun create(appComponent: AppComponent): ScreensComponent
     }
 }
