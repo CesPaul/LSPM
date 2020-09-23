@@ -71,4 +71,10 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
     override fun instantiatePresenter(): MainPresenter {
         return MainPresenter(this)
     }
+
+    companion object {
+        const val REQUEST_IMAGE_GALLERY = 1
+
+        const val REQUEST_IMAGE_CAPTURE = 2
+    }
 }

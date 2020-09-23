@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">LSPM</string>
 
+    <!-- region List Fragment -->
     <!-- Dialogs -->
     <string name="add_title">Создание элемента</string>
     <string name="add_item_name">Название элемента</string>
@@ -16,16 +17,22 @@
     <string name="done_edit_item">Изменить</string>
     <string name="revert_edit_item">Отменить</string>
 
-    <!-- Menu -->
+    <!-- Bottom Navigation -->
     <string name="bottom_navigation_list">List</string>
     <string name="bottom_navigation_scaling">Scaling</string>
     <string name="bottom_navigation_parsing">Parsing</string>
     <string name="bottom_navigation_map">Map</string>
 
-    <!-- Context Menu Long Click -->
+    <!-- Context Menu Long Click Items -->
     <string name="long_menu_edit">Редактировать</string>
     <string name="long_menu_delete">Удалить</string>
 
     <!-- Toast Messages -->
     <string name="empty_field">Поля не должны быть пустыми!</string>
+    <!-- endregion -->
+
+    <!-- region Parsing -->
+    <string name="choose_image_button_text">Выбрать изображение</string>
+    <string name="take_a_photo_button_text">Сделать фото</string>
+    <!-- endregion -->
 </resources>

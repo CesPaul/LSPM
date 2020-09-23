@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "30.0.0"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.cespaul.lspm"
@@ -51,6 +51,9 @@ dependencies {
     def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+
+    // Fresco
+    implementation 'com.facebook.fresco:fresco:1.10.0'
 
     // Test
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
