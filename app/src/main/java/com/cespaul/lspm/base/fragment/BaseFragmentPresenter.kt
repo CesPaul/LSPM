@@ -3,6 +3,7 @@ package com.cespaul.lspm.base.fragment
 import com.cespaul.lspm.App
 import com.cespaul.lspm.di.components.DaggerScreensComponent
 import com.cespaul.lspm.ui.pages.list.ListPresenter
+import com.cespaul.lspm.ui.pages.parsing.ParsingPresenter
 
 abstract class BaseFragmentPresenter<out V : BaseFragmentView>(protected val viewFragment: V) {
 
@@ -21,6 +22,7 @@ abstract class BaseFragmentPresenter<out V : BaseFragmentView>(protected val vie
     private fun inject() {
         when (this) {
             is ListPresenter -> screensComponent.inject(this)
+            is ParsingPresenter -> screensComponent.inject(this)
         }
     }
 }

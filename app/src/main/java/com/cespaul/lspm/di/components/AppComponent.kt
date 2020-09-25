@@ -2,6 +2,7 @@ package com.cespaul.lspm.di.components
 
 import android.content.Context
 import com.cespaul.lspm.App
+import com.cespaul.lspm.data.database.AppDatabase
 import com.cespaul.lspm.di.modules.AppModule
 import dagger.Component
 import javax.inject.Scope
@@ -21,6 +22,8 @@ interface AppComponent {
     fun inject(app: App)
 
     fun appContext(): Context
+
+    fun appDatabase(): AppDatabase
 
     @Component.Factory
     interface Factory {

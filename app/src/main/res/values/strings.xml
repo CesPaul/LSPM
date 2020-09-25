@@ -34,5 +34,8 @@
     <!-- region Parsing -->
     <string name="choose_image_button_text">Выбрать изображение</string>
     <string name="take_a_photo_button_text">Сделать фото</string>
+
+    <string name="error_load_quotes_message">Ошибка соединения</string>
+    <string name="request_to_repeat">Повторить</string>
     <!-- endregion -->
 </resources>
