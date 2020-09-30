@@ -8,7 +8,7 @@ import com.cespaul.lspm.ui.pages.map.MapFragment
 import com.cespaul.lspm.ui.pages.parsing.ParsingFragment
 import com.cespaul.lspm.ui.pages.scailng.ScalingFragment
 
-class CollectionStateAdapter(fragmentActivity: FragmentActivity) :
+class CollectionStateAdapter(private val mainView: MainView, fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
 
     override fun createFragment(position: Int): Fragment {
@@ -16,7 +16,7 @@ class CollectionStateAdapter(fragmentActivity: FragmentActivity) :
             0 -> return ListFragment()
             1 -> return ScalingFragment()
             2 -> return ParsingFragment()
-            3 -> return MapFragment()
+            3 -> return MapFragment(mainView)
             else -> ListFragment()
         }
     }

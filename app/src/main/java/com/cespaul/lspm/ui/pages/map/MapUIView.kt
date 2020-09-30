@@ -2,4 +2,4 @@ package com.cespaul.lspm.ui.pages.map
 
 import com.cespaul.lspm.base.fragment.BaseFragmentView
 
-interface MapView : BaseFragmentView
+interface MapUIView : BaseFragmentView

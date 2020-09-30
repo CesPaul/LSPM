@@ -38,4 +38,12 @@
     <string name="error_load_quotes_message">Ошибка соединения</string>
     <string name="request_to_repeat">Повторить</string>
     <!-- endregion -->
+
+    <!-- region Map -->
+    <string name="map_token">pk.eyJ1IjoiY2VzcGF1bCIsImEiOiJja2ZtYWY4eDUxMHZwMnJuenF3eDB4NDVyIn0.4e5QVO7v7Gz0I2TO0w1sqg</string>
+
+    <string name="user_location_permission_not_granted">Отсутствуют разрешения на геолокацию</string>
+    <string name="user_location_permission_request">Запросить</string>
+    <string name="user_location_do_not_locate">Геопозиция не может быть определена</string>
+    <!-- endregion -->
 </resources>

@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.cespaul.lspm.R
 import com.cespaul.lspm.base.activity.BaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -31,7 +32,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
      */
     private fun viewPagerInit(collectionViewPager: ViewPager2) {
         collectionViewPager.isUserInputEnabled = false
-        collectionViewPager.adapter = CollectionStateAdapter(this)
+        collectionViewPager.adapter = CollectionStateAdapter(this, this)
     }
 
     /**
@@ -70,6 +71,21 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
 
     override fun instantiatePresenter(): MainPresenter {
         return MainPresenter(this)
+    }
+
+    override fun initSnackbar(message: String, isIndefiniteLength: Boolean): Snackbar {
+        return when (isIndefiniteLength) {
+            true -> Snackbar.make(
+                mainBottomNavigation,
+                message,
+                Snackbar.LENGTH_INDEFINITE
+            ).setAnchorView(mainBottomNavigation)
+            false -> Snackbar.make(
+                mainBottomNavigation,
+                message,
+                Snackbar.LENGTH_LONG
+            ).setAnchorView(mainBottomNavigation)
+        }
     }
 
     companion object {

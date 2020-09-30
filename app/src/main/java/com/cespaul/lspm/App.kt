@@ -5,6 +5,7 @@ import android.content.Context
 import com.cespaul.lspm.di.components.AppComponent
 import com.cespaul.lspm.di.components.DaggerAppComponent
 import com.cespaul.lspm.di.modules.AppModule
+import com.mapbox.mapboxsdk.Mapbox
 
 class App : Application() {
     companion object {
@@ -22,5 +23,8 @@ class App : Application() {
             .factory()
             .create(AppModule(this))
         appComponent.inject(this)
+
+        val mapToken: String = appContext.getString(R.string.map_token)
+        Mapbox.getInstance(appContext, mapToken)
     }
 }
