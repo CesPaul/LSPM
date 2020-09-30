@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cespaul.lspm.R
 import com.cespaul.lspm.base.fragment.BaseFragment
 import com.cespaul.lspm.model.Quotes
+import com.cespaul.lspm.ui.MainView
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_parsing.*
 
-class ParsingFragment : BaseFragment<ParsingPresenter>(), ParsingView {
+class ParsingFragment(private val mainView: MainView) : BaseFragment<ParsingPresenter>(),
+    ParsingView {
 
     private lateinit var snackbar: Snackbar
 
@@ -36,17 +37,7 @@ class ParsingFragment : BaseFragment<ParsingPresenter>(), ParsingView {
         )
         parsingRecycler.addItemDecoration(dividerItemDecoration)
 
-        snackbar = Snackbar.make(
-            requireActivity().mainBottomNavigation,
-            getString(R.string.error_load_quotes_message),
-            Snackbar.LENGTH_INDEFINITE
-        )
-            .setAction(
-                getString(R.string.request_to_repeat)
-            ) {
-                presenter.onViewResumed()
-            }
-            .setAnchorView(requireActivity().mainBottomNavigation)
+        snackbar = mainView.initSnackbar("", false)
 
         presenter.onViewCreated()
     }
@@ -62,7 +53,7 @@ class ParsingFragment : BaseFragment<ParsingPresenter>(), ParsingView {
     }
 
     override fun onStop() {
-        hideSnackbar()
+        snackbar.dismiss()
         super.onStop()
     }
 
@@ -79,34 +70,20 @@ class ParsingFragment : BaseFragment<ParsingPresenter>(), ParsingView {
         presenter.onViewDestroyed()
     }
 
-    override fun showSnackbar() {
+    override fun initAndShowSnackbar() {
+        snackbar = mainView.initSnackbar(getString(R.string.error_load_quotes_message), true)
+        snackbar.setAction(
+            getString(R.string.request_to_repeat)
+        ) {
+            presenter.onViewResumed()
+        }
         snackbar.show()
     }
 
-    override fun hideSnackbar() {
-        snackbar.dismiss()
-    }
-
-    override fun initSnackbar() {
-        snackbar = Snackbar.make(
-            requireActivity().mainBottomNavigation,
-            getString(R.string.error_load_quotes_message),
-            Snackbar.LENGTH_INDEFINITE
-        )
-            .setAction(
-                getString(R.string.request_to_repeat)
-            ) {
-                presenter.onViewResumed()
-            }
-            .setAnchorView(requireActivity().mainBottomNavigation)
-        snackbar.show()
-    }
-
-    override fun showProgress() {
-        progressBar.visibility = View.VISIBLE
-    }
-
-    override fun hideProgress() {
-        progressBar.visibility = View.INVISIBLE
+    override fun visibilityProgressBar(isVisible: Boolean) {
+        when (isVisible) {
+            true -> progressBar.visibility = View.VISIBLE
+            false -> progressBar.visibility = View.INVISIBLE
+        }
     }
 }

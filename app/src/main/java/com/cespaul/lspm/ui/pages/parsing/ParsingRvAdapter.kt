@@ -15,7 +15,7 @@ import org.jsoup.Jsoup
 
 class ParsingRvAdapter(
     private val context: Context,
-    private val parsingRepository: ParsingRepository
+    parsingRepository: ParsingRepository
 ) : RecyclerView.Adapter<ParsingRvAdapter.ParsingVH>() {
 
     private var quotesList = parsingRepository.getQuotesList()

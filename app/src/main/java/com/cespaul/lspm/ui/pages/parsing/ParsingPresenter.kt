@@ -26,39 +26,39 @@ class ParsingPresenter(parsingView: ParsingView) :
     )
 
     private fun loadQuotes(): Disposable? {
-        viewFragment.showProgress()
+        viewFragment.visibilityProgressBar(true)
         return repository
             .loadQuotes()
             .doOnTerminate {
                 Log.d("get_quotes", "in process")
             }
             .subscribe({
-                viewFragment.hideProgress()
+                viewFragment.visibilityProgressBar(false)
                 adapter.updateList(it)
                 Log.d("get_quotes", "success")
             },
                 {
-                    viewFragment.hideProgress()
+                    viewFragment.visibilityProgressBar(false)
                     Log.d("get_quotes", "error")
                 }
             )
     }
 
     private fun reloadQuotes(): Disposable? {
-        viewFragment.showProgress()
+        viewFragment.visibilityProgressBar(true)
         return repository
             .loadQuotes()
             .doOnTerminate {
                 Log.d("get_quotes", "in process")
             }
             .subscribe({
-                viewFragment.hideProgress()
+                viewFragment.visibilityProgressBar(false)
                 adapter.updateList(it)
                 Log.d("get_quotes", "success")
             },
                 {
-                    viewFragment.initSnackbar()
-                    viewFragment.hideProgress()
+                    viewFragment.initAndShowSnackbar()
+                    viewFragment.visibilityProgressBar(false)
                     Log.d("get_quotes", "error")
                 }
             )

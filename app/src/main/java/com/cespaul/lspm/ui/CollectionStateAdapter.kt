@@ -15,7 +15,7 @@ class CollectionStateAdapter(private val mainView: MainView, fragmentActivity: F
         return when (position) {
             0 -> return ListFragment()
             1 -> return ScalingFragment()
-            2 -> return ParsingFragment()
+            2 -> return ParsingFragment(mainView)
             3 -> return MapFragment(mainView)
             else -> ListFragment()
         }

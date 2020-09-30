@@ -9,6 +9,8 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener
 import androidx.appcompat.widget.AppCompatImageView
+import kotlin.math.abs
+import kotlin.math.min
 
 open class TouchImageView : AppCompatImageView {
 
@@ -24,19 +26,19 @@ open class TouchImageView : AppCompatImageView {
     var mode = NONE
 
     // Remember some things for zooming
-    var last = PointF()
-    var start = PointF()
+    private var last = PointF()
+    private var start = PointF()
     var minScale = 1f
     var maxScale = 30f
-    lateinit var m: FloatArray
+    private lateinit var m: FloatArray
     var viewWidth = 0
     var viewHeight = 0
     var saveScale = 1f
     protected var origWidth = 0f
     protected var origHeight = 0f
-    var oldMeasuredWidth = 0
-    var oldMeasuredHeight = 0
-    var mScaleDetector: ScaleGestureDetector? = null
+    private var oldMeasuredWidth = 0
+    private var oldMeasuredHeight = 0
+    private var mScaleDetector: ScaleGestureDetector? = null
 
     constructor(context: Context) : super(context) {
         sharedConstructing(context)
@@ -75,8 +77,8 @@ open class TouchImageView : AppCompatImageView {
                 }
                 MotionEvent.ACTION_UP -> {
                     mode = NONE
-                    val xDiff = Math.abs(curr.x - start.x).toInt()
-                    val yDiff = Math.abs(curr.y - start.y).toInt()
+                    val xDiff = abs(curr.x - start.x).toInt()
+                    val yDiff = abs(curr.y - start.y).toInt()
                     if (xDiff < CLICK && yDiff < CLICK) performClick()
                 }
                 MotionEvent.ACTION_POINTER_UP -> mode = NONE
@@ -128,7 +130,7 @@ open class TouchImageView : AppCompatImageView {
         if (fixTransX != 0f || fixTransY != 0f) mMatrix.postTranslate(fixTransX, fixTransY)
     }
 
-    fun getFixTrans(trans: Float, viewSize: Float, contentSize: Float): Float {
+    private fun getFixTrans(trans: Float, viewSize: Float, contentSize: Float): Float {
         val minTrans: Float
         val maxTrans: Float
         if (contentSize <= viewSize) {
@@ -142,7 +144,7 @@ open class TouchImageView : AppCompatImageView {
         return if (trans > maxTrans) -trans + maxTrans else 0F
     }
 
-    fun getFixDragTrans(delta: Float, viewSize: Float, contentSize: Float): Float {
+    private fun getFixDragTrans(delta: Float, viewSize: Float, contentSize: Float): Float {
         return if (contentSize <= viewSize) {
             0F
         } else delta
@@ -168,7 +170,7 @@ open class TouchImageView : AppCompatImageView {
             Log.d("bmSize", "bmWidth: $bmWidth bmHeight : $bmHeight")
             val scaleX = viewWidth.toFloat() / bmWidth.toFloat()
             val scaleY = viewHeight.toFloat() / bmHeight.toFloat()
-            scale = Math.min(scaleX, scaleY)
+            scale = min(scaleX, scaleY)
             mMatrix.setScale(scale, scale)
             // Center the image
             var redundantYSpace = viewHeight.toFloat() - scale * bmHeight.toFloat()

@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.fragment_map.*
 import java.lang.ref.WeakReference
 
 
-class MapFragment(internal val mainView: MainView) : BaseFragment<MapPresenter>(), MapUIView,
+class MapFragment(private val mainView: MainView) : BaseFragment<MapPresenter>(), MapUIView,
     OnMapReadyCallback,
     PermissionsListener {
 

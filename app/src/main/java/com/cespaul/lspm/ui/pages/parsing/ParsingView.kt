@@ -7,13 +7,7 @@ interface ParsingView : BaseFragmentView {
 
     fun updateQuotes(quotes: Quotes)
 
-    fun showProgress()
+    fun visibilityProgressBar(isVisible: Boolean)
 
-    fun hideProgress()
-
-    fun showSnackbar()
-
-    fun hideSnackbar()
-
-    fun initSnackbar()
+    fun initAndShowSnackbar()
 }

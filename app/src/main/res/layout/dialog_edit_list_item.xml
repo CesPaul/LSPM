@@ -17,6 +17,7 @@
         android:gravity="center"
         android:hint="@string/edit_item_name"
         android:inputType="text"
+        android:importantForAutofill="no"
         android:maxLength="30" />
 
     <LinearLayout
