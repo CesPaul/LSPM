@@ -19,7 +19,7 @@ class AppModule(private val app: App) {
     @Provides
     fun provideDatabase(context: Context): AppDatabase = Room.databaseBuilder(
         context,
-        AppDatabase::class.java, "app_database"
+        AppDatabase::class.java, "application_database"
     )
         .allowMainThreadQueries()
         .build()
