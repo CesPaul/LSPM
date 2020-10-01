@@ -2,6 +2,8 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/colorSplash" />
     <item
+        android:width="200dp"
+        android:height="200dp"
         android:drawable="@drawable/lspm_foreground"
         android:gravity="center" />
 </layer-list>
