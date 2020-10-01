@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_title">Add item</string>
+    <string name="add_item_name">Title</string>
+    <string name="done_add_item">OK</string>
+    <string name="revert_add_item">Cancel</string>
+    <string name="delete_title">Delete item</string>
+    <string name="done_delete_item">OK</string>
+    <string name="revert_delete_item">Cancel</string>
+    <string name="edit_title">Edit item</string>
+    <string name="edit_item_name">New title</string>
+    <string name="done_edit_item">OK</string>
+    <string name="revert_edit_item">Cancel</string>
+    <string name="long_menu_edit">Edit</string>
+    <string name="long_menu_delete">Delete</string>
+    <string name="empty_field">The fields must not be empty!</string>
+    <string name="choose_image_button_text">Select image</string>
+    <string name="take_a_photo_button_text">Take photo</string>
+    <string name="error_load_quotes_message">Connection error</string>
+    <string name="request_to_repeat">Retry</string>
+    <string name="user_location_permission_not_granted">Geolocation permissions missing</string>
+    <string name="user_location_permission_request">Request</string>
+    <string name="user_location_do_not_locate">Geolocation not defined</string>
+</resources>

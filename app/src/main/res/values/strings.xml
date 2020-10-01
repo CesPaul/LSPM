@@ -1,30 +1,30 @@
 <resources>
-    <string name="app_name">LSPM</string>
+    <string name="app_name" translatable="false">LSPM</string>
 
     <!-- region List Fragment -->
     <!-- Dialogs -->
-    <string name="add_title">Создание элемента</string>
-    <string name="add_item_name">Название элемента</string>
-    <string name="done_add_item">Создать</string>
-    <string name="revert_add_item">Отменить</string>
+    <string name="add_title">Создать элемент</string>
+    <string name="add_item_name">Название</string>
+    <string name="done_add_item">Ок</string>
+    <string name="revert_add_item">Отмена</string>
 
-    <string name="delete_title">Удаление элемента</string>
-    <string name="done_delete_item">Удалить</string>
-    <string name="revert_delete_item">Отменить</string>
+    <string name="delete_title">Удалить элемент</string>
+    <string name="done_delete_item">Ок</string>
+    <string name="revert_delete_item">Отмена</string>
 
-    <string name="edit_title">Редактирование элемента</string>
-    <string name="edit_item_name">Новое название элемента</string>
-    <string name="done_edit_item">Изменить</string>
-    <string name="revert_edit_item">Отменить</string>
+    <string name="edit_title">Изменить элемент</string>
+    <string name="edit_item_name">Новое название</string>
+    <string name="done_edit_item">Ок</string>
+    <string name="revert_edit_item">Отмена</string>
 
     <!-- Bottom Navigation -->
-    <string name="bottom_navigation_list">List</string>
-    <string name="bottom_navigation_scaling">Scaling</string>
-    <string name="bottom_navigation_parsing">Parsing</string>
-    <string name="bottom_navigation_map">Map</string>
+    <string name="bottom_navigation_list" translatable="false">List</string>
+    <string name="bottom_navigation_scaling" translatable="false">Scaling</string>
+    <string name="bottom_navigation_parsing" translatable="false">Parsing</string>
+    <string name="bottom_navigation_map" translatable="false">Map</string>
 
     <!-- Context Menu Long Click Items -->
-    <string name="long_menu_edit">Редактировать</string>
+    <string name="long_menu_edit">Изменить</string>
     <string name="long_menu_delete">Удалить</string>
 
     <!-- Toast Messages -->
@@ -40,10 +40,10 @@
     <!-- endregion -->
 
     <!-- region Map -->
-    <string name="map_token">pk.eyJ1IjoiY2VzcGF1bCIsImEiOiJja2ZtYWY4eDUxMHZwMnJuenF3eDB4NDVyIn0.4e5QVO7v7Gz0I2TO0w1sqg</string>
+    <string name="map_token" translatable="false">pk.eyJ1IjoiY2VzcGF1bCIsImEiOiJja2ZtYWY4eDUxMHZwMnJuenF3eDB4NDVyIn0.4e5QVO7v7Gz0I2TO0w1sqg</string>
 
     <string name="user_location_permission_not_granted">Отсутствуют разрешения на геолокацию</string>
     <string name="user_location_permission_request">Запросить</string>
-    <string name="user_location_do_not_locate">Геопозиция не может быть определена</string>
+    <string name="user_location_do_not_locate">Геопозиция не определена</string>
     <!-- endregion -->
 </resources>

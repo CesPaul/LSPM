@@ -21,27 +21,23 @@
         android:maxLength="30" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
+        android:gravity="end"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/cancelEditButton"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/base_grid_size"
             android:text="@string/revert_edit_item" />
 
         <Button
             android:id="@+id/confirmEditButton"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/base_grid_size"
             android:text="@string/done_edit_item" />
 
     </LinearLayout>
