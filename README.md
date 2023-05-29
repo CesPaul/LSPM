@@ -7,4 +7,4 @@
 
 <img src="https://github.com/CesPaul/LSPM/assets/43243212/359e5254-3809-46aa-b39c-9c1747188ace" style="width: auto; height: 400px">
 
-<img src="https://github.com/CesPaul/LSPM/assets/43243212/86db8e13-ef50-403c-838a-6d2478e96495" style="width: auto; height: 400px">
+<img src="https://github.com/CesPaul/LSPM/assets/43243212/dbc80348-1583-4aee-aa2a-0a78fed5de23" style="width: auto; height: 400px">
